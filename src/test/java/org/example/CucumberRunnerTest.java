@@ -20,6 +20,7 @@ public class CucumberRunnerTest extends AbstractTestNGCucumberTests {
         Configuration.timeout = 5_000;
         Configuration.browser = "chrome";
         Configuration.clickViaJs = true;
+        Configuration.startMaximized = true;
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
     }
 }
