@@ -1,4 +1,4 @@
-package org.example.stepdefinitions.autoru;
+package org.example.pages.autoru;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;

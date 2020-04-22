@@ -2,6 +2,9 @@ package org.example.stepdefinitions.autoru;
 
 import com.codeborne.selenide.Selenide;
 import io.cucumber.java.ru.*;
+import org.example.pages.autoru.BrandPage;
+import org.example.pages.autoru.MainPage;
+import org.example.pages.autoru.ModelPage;
 import org.example.pages.autoru.NativeFrame;
 import org.testng.Assert;
 
