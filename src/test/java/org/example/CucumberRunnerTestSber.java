@@ -9,11 +9,11 @@ import org.testng.annotations.BeforeMethod;
 
 @CucumberOptions(
         plugin = "json:target/cucumber-report.json",
-        features = "src/main/resources/features",
+        features = "src/main/resources/features.sberbank",
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        glue = {"org/example/stepdefinitions"}
+        glue = {"org/example/stepdefinitions/sber"}
 )
-public class CucumberRunnerTest extends AbstractTestNGCucumberTests {
+public class CucumberRunnerTestSber extends AbstractTestNGCucumberTests {
 
     @BeforeMethod
     public void selenideConfigure() {

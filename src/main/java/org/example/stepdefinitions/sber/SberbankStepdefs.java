@@ -1,4 +1,4 @@
-package org.example.stepdefinitions;
+package org.example.stepdefinitions.sber;
 
 import com.codeborne.selenide.*;
 import io.cucumber.java.ru.*;
