@@ -1,4 +1,4 @@
-package org.example.stepdefinitions.autoru;
+package org.example.stepdefinitions;
 
 import com.codeborne.selenide.Selenide;
 import io.cucumber.java.ru.*;
@@ -14,8 +14,8 @@ public class AutoRuStepdefs {
         Selenide.open(arg0);
     }
 
-    @Тогда("название страницы содержит {string}")
-    public void pageTitle(String arg0) {
+    @Тогда("название страницы содержит  {string}")
+    public void pageTitleContains(String arg0) {
         NativeFrame nativeFrame = new NativeFrame();
         nativeFrame.closeFrame();
         Assert.assertTrue(Selenide.title().contains(arg0));

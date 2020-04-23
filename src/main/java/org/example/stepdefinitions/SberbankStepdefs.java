@@ -1,4 +1,4 @@
-package org.example.stepdefinitions.sber;
+package org.example.stepdefinitions;
 
 import com.codeborne.selenide.*;
 import io.cucumber.java.ru.*;
@@ -10,7 +10,7 @@ import org.testng.Assert;
 import java.util.List;
 
 public class SberbankStepdefs {
-    @Дано("пользователь переходит на сайт {string}")
+    @Дано("пользователь переходит на сайт  {string}")
     public void openSite(String arg0) {
         Selenide.open(arg0);
     }
