@@ -14,7 +14,7 @@ import org.testng.annotations.BeforeMethod;
         features = "src/main/resources/features",
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         glue = {"org/example/stepdefinitions"},
-        tags = "@hw28"
+        tags = "@all"
 )
 public class CucumberRunnerTest extends AbstractTestNGCucumberTests {
 
