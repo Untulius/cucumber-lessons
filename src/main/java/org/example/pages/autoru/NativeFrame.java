@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 public class NativeFrame {
-    private SelenideElement frameClose = Selenide.$(By.xpath("/html/body/div[3]/div/div/div[2]"));
+    private SelenideElement frameClose = Selenide.$(By.xpath("(//div[contains(@class, 'Modal__closer')])[5]"));
 
     public void closeFrame() {
         if (frameClose.exists()) {
