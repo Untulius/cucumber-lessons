@@ -18,7 +18,7 @@ import org.testng.Assert;
  */
 
 public class BspbRuStepdefs {
-    OverviewPage overviewPage = new OverviewPage();
+    private OverviewPage overviewPage = new OverviewPage();
 
     @Дано("пользователь открывает сайт {string}")
     public void openSite(String siteUrl) {

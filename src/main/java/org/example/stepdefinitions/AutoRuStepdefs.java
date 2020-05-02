@@ -9,8 +9,8 @@ import org.example.pages.autoru.NativeFrame;
 import org.testng.Assert;
 
 public class AutoRuStepdefs {
-    MainPage mainPage = new MainPage();
-    BrandPage brandPage = new BrandPage();
+    private MainPage mainPage = new MainPage();
+    private BrandPage brandPage = new BrandPage();
 
     @Дано("пользователь переходит на сайт {string}")
     public void openSite(String siteUrl) {

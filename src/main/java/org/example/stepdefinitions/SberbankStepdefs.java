@@ -10,7 +10,7 @@ import org.testng.Assert;
 import java.util.List;
 
 public class SberbankStepdefs {
-    SelectDepositPage selectDepositPage = new SelectDepositPage();
+    private SelectDepositPage selectDepositPage = new SelectDepositPage();
 
     @Дано("пользователь переходит на сайт  {string}")
     public void openSite(String siteUrl) {
