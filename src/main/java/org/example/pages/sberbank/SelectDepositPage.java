@@ -16,7 +16,7 @@ public class SelectDepositPage {
     private SelenideElement iframeChoice = Selenide.$(By.xpath("//div[@data-id='podobrat']//iframe"));
     private SelenideElement buttonDetails = Selenide.$(By.xpath(".//div[@id='depositSelection']//a[@data-test-id='Button-white'] "));
 
-    public void ButtonDetailsClick() {
+    public void buttonDetailsClick() {
         WebDriver webDriver = WebDriverRunner.getWebDriver();
         Set<String> oldWindowsSet = webDriver.getWindowHandles();
         buttonDetails.click();

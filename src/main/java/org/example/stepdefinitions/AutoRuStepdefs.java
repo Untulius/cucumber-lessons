@@ -9,49 +9,44 @@ import org.example.pages.autoru.NativeFrame;
 import org.testng.Assert;
 
 public class AutoRuStepdefs {
+    MainPage mainPage = new MainPage();
+    BrandPage brandPage = new BrandPage();
+
     @Дано("пользователь переходит на сайт {string}")
-    public void openSite(String arg0) {
-        Selenide.open(arg0);
+    public void openSite(String siteUrl) {
+        Selenide.open(siteUrl);
     }
 
     @Тогда("название страницы содержит  {string}")
-    public void pageTitleContains(String arg0) {
-        NativeFrame nativeFrame = new NativeFrame();
-        nativeFrame.closeFrame();
-        Assert.assertTrue(Selenide.title().contains(arg0));
+    public void pageTitleContains(String pageTitle) {
+        new NativeFrame().closeFrame();
+        Assert.assertTrue(Selenide.title().contains(pageTitle), "Некорректное наименование страницы");
     }
 
     @Затем("пользователь сохраняет количество объявлений, отображаемых перед названием {string} автомобиля")
     public void saveAds(String nameOfBrand) {
-        MainPage mainPage = new MainPage();
         mainPage.showAllBrands();
         mainPage.saveNumberOfAds(nameOfBrand);
-        System.out.println("Всего объявлений: " + MainPage.numberOfAds);
     }
 
     @И("пользователь переходит на страницу с объявлениями {string} автомобилей из п.2")
     public void openBrandPage(String nameOfBrand) {
-        MainPage mainPage = new MainPage();
         mainPage.openBrandPage(nameOfBrand);
     }
 
     @Тогда("отображается кнопка с текстом, содержащим количество объявлений из п.2")
     public void showsButtonWithCountOfModels() {
-        BrandPage brandPage = new BrandPage();
         String buttonText = brandPage.buttonShowGetText();
-        Assert.assertTrue(buttonText.contains(MainPage.numberOfAds));
+        Assert.assertTrue(buttonText.contains(MainPage.numberOfAds), "Некорректное количество объявлений на кнопке");
     }
 
     @Затем("пользователь сохраняет количество объявлений конкретной {string} автомобиля")
     public void saveNumberOfCars(String nameOfModel) {
-        BrandPage brandPage = new BrandPage();
         brandPage.saveNumberOfCars(nameOfModel);
-        System.out.println("Число авто: " + BrandPage.numberOfCars);
     }
 
     @Затем("пользователь переходит на страницу {string} из предыдущего пункта")
     public void openModelPage(String nameOfModel) {
-        BrandPage brandPage = new BrandPage();
         brandPage.openModelPage(nameOfModel);
     }
 
@@ -59,7 +54,7 @@ public class AutoRuStepdefs {
     public void showsButtonWithCountOfCars() {
         ModelPage modelPage = new ModelPage();
         String buttonText = modelPage.buttonShowGetText();
-        Assert.assertTrue(buttonText.contains(BrandPage.numberOfCars));
+        Assert.assertTrue(buttonText.contains(BrandPage.numberOfCars), "Некорректное количество объявлений на кнопке");
     }
 }
 

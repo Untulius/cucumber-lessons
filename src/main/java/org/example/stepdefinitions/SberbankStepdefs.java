@@ -10,31 +10,32 @@ import org.testng.Assert;
 import java.util.List;
 
 public class SberbankStepdefs {
+    SelectDepositPage selectDepositPage = new SelectDepositPage();
+
     @Дано("пользователь переходит на сайт  {string}")
-    public void openSite(String arg0) {
-        Selenide.open(arg0);
+    public void openSite(String siteUrl) {
+        Selenide.open(siteUrl);
     }
 
     @Тогда("название страницы содержит {string}")
-    public void pageTitle(String arg0) {
-        Assert.assertTrue(Selenide.title().contains(arg0));
+    public void pageTitle(String pageTitle) {
+        Assert.assertTrue(Selenide.title().contains(pageTitle), "Некорректное наименование страницы");
     }
 
     @Затем("пользователь через верхнее меню переходит во {string}")
-    public void menuDeposits(String arg0) {
+    public void menuDeposits(String menuTitle) {
         TopMenu topMenu = new TopMenu();
-        topMenu.selectTopMenu(arg0);
-        topMenu.selectSubMenu("Вклады");
+        topMenu.selectTopMenu(menuTitle);
+        topMenu.selectSubMenu(menuTitle);
     }
 
     @Когда("пользователь переходит на вкладку {string}")
-    public void selectDeposit(String arg0) {
-        new SelectDepositPage().selectSubMenu(arg0);
+    public void selectDeposit(String depositName) {
+        selectDepositPage.selectSubMenu(depositName);
     }
 
     @Тогда("отображаются 4 чек-бокса")
     public void checkboxesView(List<String> dataTable) {
-        SelectDepositPage selectDepositPage = new SelectDepositPage();
         Selenide.switchTo().frame(selectDepositPage.getIframeChoice());
         for (String element : dataTable) {
             selectDepositPage.getCheckbox(element).shouldBe(Condition.enabled);
@@ -43,19 +44,16 @@ public class SberbankStepdefs {
 
     @И("установлен чекбокс {string}")
     public void checkboxIsChecked(String checkboxName) {
-        SelectDepositPage selectDepositPage = new SelectDepositPage();
         selectDepositPage.getCheckbox(checkboxName).shouldBe(Condition.checked);
     }
 
     @И("отображается 3 вклада")
     public void depositsView(List<String> dataTable) {
-        SelectDepositPage selectDepositPage = new SelectDepositPage();
-        Assert.assertTrue(selectDepositPage.getDeposits().texts().containsAll(dataTable));
+        Assert.assertTrue(selectDepositPage.getDeposits().texts().containsAll(dataTable), "Отображаются не все вклады");
     }
 
     @Когда("пользователь выбирает чек-боксы")
     public void checkboxesCheck(List<String> dataTable) {
-        SelectDepositPage selectDepositPage = new SelectDepositPage();
         for (String element : dataTable) {
             selectDepositPage.getCheckbox(element).click();
         }
@@ -63,7 +61,6 @@ public class SberbankStepdefs {
 
     @Тогда("исчезают вклады Сохраняй и Пополняй. Остался только {string}")
     public void depositCheck(String depositName) {
-        SelectDepositPage selectDepositPage = new SelectDepositPage();
         selectDepositPage.getDeposits()
                 .shouldHaveSize(1)
                 .shouldHave(CollectionCondition.texts(depositName));
@@ -71,12 +68,12 @@ public class SberbankStepdefs {
 
     @Затем("пользователь нажимает на кнопку Подробнее вклада Управляй")
     public void buttonDetails() {
-        new SelectDepositPage().ButtonDetailsClick();
+        selectDepositPage.buttonDetailsClick();
     }
 
     @Тогда("в новом окне открылось окно с названием {string}")
     public void newWindow(String windowTitle) {
-        Assert.assertTrue(Selenide.title().contains(windowTitle));
+        Assert.assertTrue(Selenide.title().contains(windowTitle), "Некорректное наименование страницы");
     }
 
     @И("на странице отображается надпись {string}")
