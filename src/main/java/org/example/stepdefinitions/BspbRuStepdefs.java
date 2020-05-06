@@ -6,6 +6,8 @@ import io.cucumber.java.ru.Дано;
 import io.cucumber.java.ru.Затем;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Тогда;
+import org.example.config.ConfigReader;
+import org.example.config.PropertiesConfigReader;
 import org.example.pages.bspbru.LoginPage;
 import org.example.pages.bspbru.OverviewPage;
 import org.example.pages.bspbru.SmsPage;
@@ -19,6 +21,7 @@ import org.testng.Assert;
 
 public class BspbRuStepdefs {
     private OverviewPage overviewPage = new OverviewPage();
+    private ConfigReader configReader = new PropertiesConfigReader();
 
     @Дано("пользователь открывает сайт {string}")
     public void openSite(String siteUrl) {
@@ -30,9 +33,9 @@ public class BspbRuStepdefs {
         Selenide.$(By.xpath("//form[@action='/auth/login']")).shouldBe(Condition.visible);
     }
 
-    @Затем("пользователь входит в систему под учетной записью {string} {string}")
-    public void loginFormEnter(String login, String pass) {
-        new LoginPage().login(login, pass);
+    @Затем("пользователь входит в систему под учетной записью")
+    public void loginFormEnter() {
+        new LoginPage().login(configReader.getValue("login"), configReader.getValue("pass"));
     }
 
     @Тогда("отображается форма двухфакторнаой аутентификации")
@@ -40,9 +43,9 @@ public class BspbRuStepdefs {
         Selenide.$(By.xpath("//form[@action='/auth/otp']")).shouldBe(Condition.visible);
     }
 
-    @Затем("пользователь вводит в поле ввода код подтверждения {string} и нажимает кнопку \"Войти\"")
-    public void smsFormEnter(String code) {
-        new SmsPage().enterCode(code);
+    @Затем("пользователь вводит в поле ввода код подтверждения и нажимает кнопку \"Войти\"")
+    public void smsFormEnter() {
+        new SmsPage().enterCode(configReader.getValue("code"));
     }
 
     @Тогда("осуществляется вход в систему")
