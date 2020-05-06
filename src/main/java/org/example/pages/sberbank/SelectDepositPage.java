@@ -13,7 +13,6 @@ import java.util.Set;
 
 public class SelectDepositPage {
 
-    private SelenideElement iframeChoice = Selenide.$(By.xpath("//div[@data-id='podobrat']//iframe"));
     private SelenideElement buttonDetails = Selenide.$(By.xpath(".//div[@id='depositSelection']//a[@data-test-id='Button-white'] "));
 
     public void buttonDetailsClick() {
@@ -35,7 +34,7 @@ public class SelectDepositPage {
     }
 
     public SelenideElement getIframeChoice() {
-        return iframeChoice;
+        return Selenide.$(By.xpath("//div[@data-id='podobrat']//iframe"));
     }
 
     public void selectSubMenu(String subMenuTitle) {

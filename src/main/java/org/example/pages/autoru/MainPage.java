@@ -5,11 +5,10 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 public class MainPage {
-    private SelenideElement allBrands = Selenide.$(By.xpath(".//div[@class='IndexMarks__show-all']"));
     public static String numberOfAds;
 
     public void showAllBrands() {
-        allBrands.click();
+        Selenide.$(By.xpath(".//div[@class='IndexMarks__show-all']")).click();
     }
 
     public void saveNumberOfAds(String nameOfBrand) {
